@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EduMind</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        /* global */
+        *,
+        *::after,
+        *::before {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            background-color: transparent;
+        }
+
+        body {
+            font-family: "Zain", sans-serif;
+        }
+
+        /* mobile container */
+        .mobile-design {
+            background-color: #fff;
+            width: 100%;
+            max-width: 600px;
+            height: 100vh;
+            margin: auto;
+            position: relative;
+        }
+
+        /* intro */
+
+        .mobile-design .intro {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* bg */
+        .mobile-design .intro .bg {
+            background-image: url(images/bg.png);
+            background-size: cover;
+            background-position: bottom;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: .5s;
+        }
+
+        .mobile-design .intro .bg::after {
+            content: " ";
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: #da9825e3;
+        }
+
+        /* animated */
+
+        .mobile-design .intro .bg.animated {
+            opacity: 1;
+        }
+
+        /* logo */
+
+        .mobile-design .intro .float-logo {
+            width: 55%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: center;
+            transition: .5s;
+
+        }
+
+        .mobile-design .intro .float-logo .l-Icon {
+            width: 30%;
+            transform: scale(100) translateY(40%);
+            transition: 1.4s;
+        }
+
+        .mobile-design .intro .float-logo .l-TextCon {
+            overflow: hidden;
+            height: 0;
+            transition: .8s;
+        }
+
+        .mobile-design .intro .float-logo .l-TextCon .l-Text {
+            transform: translateY(-100%);
+            transform-origin: bottom;
+            transition: .8s;
+            width: 100%;
+        }
+
+        /* animated */
+
+        .mobile-design .intro .float-logo.animated {
+            filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.18));
+            transform: translate(-50%, -90%);
+        }
+
+
+        .mobile-design .intro .float-logo .l-Icon.animated {
+            transform: scale(1) translateY(0%);
+        }
+
+        .mobile-design .intro .float-logo .l-TextCon.animated {
+            height: 65px;
+        }
+
+        .mobile-design .intro .float-logo .l-TextCon .l-Text.animated {
+            transform: translateY(0%);
+        }
+
+        /* intro-content */
+        .mobile-design .intro .intro-content {
+            position: absolute;
+            left: 0%;
+            bottom: 0px;
+            width: 100%;
+            z-index: 3;
+            direction: rtl;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 10%;
+            padding-bottom: 15%;
+            text-shadow: 0 0px 3px #0000002e;
+        }
+
+        .mobile-design .intro .intro-content .head-text {
+            color: #fff;
+            font-size: 28px;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: .5s;
+        }
+
+        .mobile-design .intro .intro-content .head-text span {
+            font-weight: 900;
+            font-size: 45px;
+            display: block;
+        }
+
+        .mobile-design .intro .intro-content .description-text {
+            color: #fff;
+            font-size: 18px;
+            opacity: 0;
+            transform: translateY(100%);
+            transition-duration: .5s;
+            transition-delay: .3s;
+        }
+
+        .mobile-design .intro .intro-content .intro-btn {
+            background-color: #252b35;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2%;
+            color: #fff;
+            font-family: inherit;
+            border-radius: 100px;
+            margin-top: 30px;
+            height: 50px;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(100%);
+            transition-duration: .5s;
+            transition-delay: .6s;
+        }
+
+        .mobile-design .intro .intro-content .intro-btn:hover{
+            background-color: #363e4d;
+        }
+
+        .mobile-design .intro .intro-content .intro-btn .btn-icon {
+            aspect-ratio: 1/1;
+            display: block;
+            height: 100%;
+            background-color: #da9825;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-design .intro .intro-content .intro-btn:hover .btn-icon {
+            background-color: #eea629;
+        }
+
+        .mobile-design .intro .intro-content .intro-btn .freespan {
+            height: 100%;
+            aspect-ratio: 1/1;
+        }
+
+        /* animated */
+
+        .mobile-design .intro .intro-content .head-text.animated,
+        .mobile-design .intro .intro-content .description-text.animated,
+        .mobile-design .intro .intro-content .intro-btn.animated {
+            opacity: 1;
+            transform: translateY(0%);
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="mobile-design">
+        <div class="intro">
+            <div class="bg"></div>
+            <div class="float-logo">
+                <img class="l-Icon" src="images/icon.png">
+                <div class="l-TextCon">
+                    <img class="l-Text" src="images/logo-en-text.png">
+                </div>
+            </div>
+            <!-- content -->
+            <div class="intro-content">
+                <p class="head-text">
+                    بوابتك الذكية نحو
+                    <span>تعلّم أفضل!</span>
+                </p>
+                <p class="description-text">
+                    تابع رحلة أبنائك التعليمية، واكتشف تقدّمهم، وساعدهم على التعلّم بشكل أفضل كل يوم.
+                </p>
+
+                <button class="intro-btn">
+                    <span class="btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-chevron-right preview-icon">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </span>
+                    <span>ابدأ الان</span>
+                    <span class="freespan"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
+    <script>
+        $(window).ready(function () {
+            $(".mobile-design .intro .float-logo .l-Icon").addClass("animated");
+
+            setTimeout(function () {
+                $(".mobile-design .intro .float-logo .l-TextCon").addClass("animated");
+                $(".mobile-design .intro .float-logo .l-TextCon .l-Text").addClass("animated");
+            }, 1600)
+
+            setTimeout(function () {
+                $(".mobile-design .intro .bg").addClass("animated");
+                $(".mobile-design .intro .float-logo").addClass("animated");
+            }, 3000)
+
+            setTimeout(function () {
+                $(".mobile-design .intro .intro-content .head-text").addClass("animated");
+                $(".mobile-design .intro .intro-content .description-text").addClass("animated");
+                $(".mobile-design .intro .intro-content .intro-btn").addClass("animated");
+            }, 4000)
+        })
+    </script>
+</body>
+
+</html>
