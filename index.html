@@ -264,26 +264,49 @@
 
         .forms-box .child {
             position: relative;
-            /* background-color: #ffffff; */
-            /* border-radius: 24px; */
-            /* padding: 16px; */
-            /* border: 1px solid #ffffff;
-            box-shadow:
-                0 16px 40px rgba(180, 140, 50, 0.08),
-                0 3px 12px rgba(0, 0, 0, 0.02); */
         }
 
-        .forms-box .child .form {
+        .login-window {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .forms-box .child .login-window .login-box {
+            display: flex;
+            flex-direction: row-reverse;
+            width: 200%;
+            transition: .3s;
+            transform: translateX(50%);
+        }
+
+        .forms-box .child .login-window .login-box.otp-animated {
+            transform: translateX(0%);
+            transition-delay: .5s;
+        }
+
+        .forms-box .child .login-window .login-box.otp-animated .login-form {
+            opacity: 0;
+            transform: scale(.8);
+        }
+
+        .forms-box .child .login-box>div {
+            width: 50%;
+            direction: rtl;
+
+        }
+
+        .forms-box .child .login-form {
             display: flex;
             flex-direction: column;
             gap: 20px;
+            transition: .5s;
         }
 
-        .forms-box .child .form .head-title {
+        .forms-box .child .head-title {
             text-align: center;
         }
 
-        .forms-box .child .form .head-title .title {
+        .forms-box .child .head-title .title {
             font-size: 18px;
             font-weight: 700;
             color: #181424;
@@ -291,7 +314,7 @@
             letter-spacing: -0.025em;
         }
 
-        .forms-box .child .form .head-title .sub-title {
+        .forms-box .child .head-title .sub-title {
             font-size: 11.5px;
             color: #8C867B;
             color: #fff;
@@ -299,7 +322,7 @@
             margin-top: 2px;
         }
 
-        .forms-box .child .form form {
+        .forms-box .child form {
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -693,9 +716,37 @@
 
         .btn-signup:hover {
             color: #0e0d17;
-            /* hover:text-[#c9830c] */
             text-decoration: underline;
-            /* hover:underline */
+        }
+
+        /* otp design */
+
+        .otp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0;
+            transform: scale(.8);
+            transition: .9s;
+            transition-delay: .4s;
+        }
+
+        .forms-box .child .login-window .login-box.otp-animated .otp-form {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .otp-input-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .otp-input-container input {
+            width: 13%;
+            aspect-ratio: 1/1;
+            background-color: #fff;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -739,136 +790,157 @@
 
             <div class="forms-box">
                 <div class="child">
-                    <div class="login-box">
-                        <div class="form">
-                            <div class="head-title">
-                                <p class="title">
-                                    أهلاً بك مجدداً!
-                                </p>
-                                <p class="sub-title">
-                                    سجل دخول و دعنا نتابع احدث المستجدات
-                                </p>
-                            </div>
-                            <form>
-                                <div class="phone-field-wrapper">
-                                    <!-- حقل الإدخال الرئيسي -->
-                                    <div class="input-box group">
-                                        <button type="button" class="btn-code" id="btn-country-code" dir="ltr"
-                                            title="انقر لتغيير كود الدولة">
-                                            +20
-                                        </button>
-
-                                        <input type="tel" class="input-phone" placeholder="010 1234 5678" dir="ltr"
-                                            required value="" />
-
-                                        <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
-                                            stroke-linejoin="round" aria-hidden="true">
-                                            <path
-                                                d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384">
-                                            </path>
-                                        </svg>
-                                    </div>
-
-                                    <!-- القائمة المنسدلة لاختيار الدولة -->
-                                    <div class="country-menu" id="country-menu">
-                                        <button type="button" class="country-option selected" data-code="+20">
-                                            <div class="country-label">
-                                                <span class="flag">🇪🇬</span>
-                                                <span>مصر</span>
-                                            </div>
-                                            <span class="code" dir="ltr">+20</span>
-                                        </button>
-
-                                        <button type="button" class="country-option" data-code="+966">
-                                            <div class="country-label">
-                                                <span class="flag">🇸🇦</span>
-                                                <span>السعودية</span>
-                                            </div>
-                                            <span class="code" dir="ltr">+966</span>
-                                        </button>
-
-                                        <button type="button" class="country-option" data-code="+971">
-                                            <div class="country-label">
-                                                <span class="flag">🇦🇪</span>
-                                                <span>الإمارات</span>
-                                            </div>
-                                            <span class="code" dir="ltr">+971</span>
-                                        </button>
-
-                                        <button type="button" class="country-option" data-code="+965">
-                                            <div class="country-label">
-                                                <span class="flag">🇰🇼</span>
-                                                <span>الكويت</span>
-                                            </div>
-                                            <span class="code" dir="ltr">+965</span>
-                                        </button>
-
-                                        <button type="button" class="country-option" data-code="+974">
-                                            <div class="country-label">
-                                                <span class="flag">🇶🇦</span>
-                                                <span>قطر</span>
-                                            </div>
-                                            <span class="code" dir="ltr">+974</span>
-                                        </button>
-
-                                        <button type="button" class="country-option" data-code="+962">
-                                            <div class="country-label">
-                                                <span class="flag">🇯🇴</span>
-                                                <span>الأردن</span>
-                                            </div>
-                                            <span class="code" dir="ltr">+962</span>
-                                        </button>
-
-                                        <button type="button" class="country-option" data-code="+1">
-                                            <div class="country-label">
-                                                <span class="flag">🇺🇸</span>
-                                                <span>أمريكا</span>
-                                            </div>
-                                            <span class="code" dir="ltr">+1</span>
-                                        </button>
-                                    </div>
+                    <div class="login-window">
+                        <div class="login-box">
+                            <div class="login-form">
+                                <div class="head-title">
+                                    <p class="title">
+                                        أهلاً بك مجدداً!
+                                    </p>
+                                    <p class="sub-title">
+                                        سجل دخول و دعنا نتابع احدث المستجدات
+                                    </p>
                                 </div>
+                                <form>
+                                    <div class="phone-field-wrapper">
+                                        <!-- حقل الإدخال الرئيسي -->
+                                        <div class="input-box group">
+                                            <button type="button" class="btn-code" id="btn-country-code" dir="ltr"
+                                                title="انقر لتغيير كود الدولة">
+                                                +20
+                                            </button>
 
-                                <div class="options-row" dir="rtl">
-                                    <!-- خيار تذكر هذا الجهاز -->
-                                    <label class="checkbox-label">
-                                        <button type="button" role="checkbox" aria-checked="true"
-                                            class="custom-checkbox checked" id="remember-checkbox">
-                                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                            <input type="tel" class="input-phone" placeholder="010 1234 5678" dir="ltr"
+                                                required value="" />
+
+                                            <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
                                                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                <path d="M20 6 9 17l-5-5"></path>
+                                                <path
+                                                    d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384">
+                                                </path>
                                             </svg>
-                                        </button>
-                                        <span class="label-text">تذكر هذا الجهاز</span>
-                                    </label>
+                                        </div>
 
-                                </div>
+                                        <!-- القائمة المنسدلة لاختيار الدولة -->
+                                        <div class="country-menu" id="country-menu">
+                                            <button type="button" class="country-option selected" data-code="+20">
+                                                <div class="country-label">
+                                                    <span class="flag">🇪🇬</span>
+                                                    <span>مصر</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+20</span>
+                                            </button>
 
-                                <button type="button" class="submit-btn" dir="rtl">
-                                    <span class="btn-text">إرسال رمز التحقق</span>
-                                    <div class="icon-circle">
-                                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                                            stroke-linejoin="round" aria-hidden="true">
-                                            <path d="m12 19-7-7 7-7"></path>
-                                            <path d="M19 12H5"></path>
-                                        </svg>
+                                            <button type="button" class="country-option" data-code="+966">
+                                                <div class="country-label">
+                                                    <span class="flag">🇸🇦</span>
+                                                    <span>السعودية</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+966</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+971">
+                                                <div class="country-label">
+                                                    <span class="flag">🇦🇪</span>
+                                                    <span>الإمارات</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+971</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+965">
+                                                <div class="country-label">
+                                                    <span class="flag">🇰🇼</span>
+                                                    <span>الكويت</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+965</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+974">
+                                                <div class="country-label">
+                                                    <span class="flag">🇶🇦</span>
+                                                    <span>قطر</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+974</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+962">
+                                                <div class="country-label">
+                                                    <span class="flag">🇯🇴</span>
+                                                    <span>الأردن</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+962</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+1">
+                                                <div class="country-label">
+                                                    <span class="flag">🇺🇸</span>
+                                                    <span>أمريكا</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+1</span>
+                                            </button>
+                                        </div>
                                     </div>
-                                </button>
 
-                                <div class="divider-wrapper">
-                                    <div class="divider-line divider-right"></div>
-                                    <span class="divider-text">أو</span>
-                                    <div class="divider-line divider-left"></div>
-                                </div>
+                                    <div class="options-row" dir="rtl">
+                                        <!-- خيار تذكر هذا الجهاز -->
+                                        <label class="checkbox-label">
+                                            <button type="button" role="checkbox" aria-checked="true"
+                                                class="custom-checkbox checked" id="remember-checkbox">
+                                                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                                    aria-hidden="true">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </button>
+                                            <span class="label-text">تذكر هذا الجهاز</span>
+                                        </label>
 
-                                <div class="signup-prompt">
-                                    <span>ليس لديك حساب؟ </span>
-                                    <button type="button" class="btn-signup">إنشاء حساب</button>
+                                    </div>
+
+                                    <button type="button" class="submit-btn otp-btn" dir="rtl">
+                                        <span class="btn-text">إرسال رمز التحقق</span>
+                                        <div class="icon-circle">
+                                            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="m12 19-7-7 7-7"></path>
+                                                <path d="M19 12H5"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+
+                                    <div class="divider-wrapper">
+                                        <div class="divider-line divider-right"></div>
+                                        <span class="divider-text">أو</span>
+                                        <div class="divider-line divider-left"></div>
+                                    </div>
+
+                                    <div class="signup-prompt">
+                                        <span>ليس لديك حساب؟ </span>
+                                        <button type="button" class="btn-signup">إنشاء حساب</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="otp-form">
+                                <div class="head-title">
+                                    <p class="title">
+                                        تحقق من رقمك
+                                    </p>
+                                    <p class="sub-title">
+                                        أدخل الرمز المكون من 4 أرقام المرسل إلى هاتفك
+                                    </p>
                                 </div>
-                            </form>
+                                <form>
+                                    <div class="otp-input-container">
+                                        <input type="text" name="" id="">
+                                        <input type="text" name="" id="">
+                                        <input type="text" name="" id="">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -896,6 +968,12 @@
                 $(".mobile-design .intro .intro-content .description-text").addClass("animated");
                 $(".mobile-design .intro .intro-content .intro-btn").addClass("animated");
             }, 4000)
+
+            // otp animated
+
+            $(".otp-btn").click(function () {
+                $(".forms-box .child .login-window .login-box").addClass("otp-animated")
+            })
 
             // out
 
