@@ -745,8 +745,19 @@
         .otp-input-container input {
             width: 13%;
             aspect-ratio: 1/1;
-            background-color: #fff;
-            border-radius: 9px;
+            background-color: #ffffffd2;
+            border-radius: 16px;
+            text-align: center;
+            font-weight: bold;
+            color: #171424;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .otp-timer {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
         }
     </style>
 </head>
@@ -934,10 +945,13 @@
                                 </div>
                                 <form>
                                     <div class="otp-input-container">
-                                        <input type="text" name="" id="">
-                                        <input type="text" name="" id="">
-                                        <input type="text" name="" id="">
-                                        <input type="text" name="" id="">
+                                        <input type="text" maxlength="1" name="" id="">
+                                        <input type="text" maxlength="1" name="" id="">
+                                        <input type="text" maxlength="1" name="" id="">
+                                        <input type="text" maxlength="1" name="" id="">
+                                    </div>
+                                    <div class="otp-timer">
+                                        يمكنك إعادة الإرسال خلال <span id="timer">00:50</span>
                                     </div>
                                 </form>
                             </div>
