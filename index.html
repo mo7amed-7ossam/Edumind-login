@@ -785,9 +785,9 @@
         }
 
         .back-link svg {
-    width: 15px;
-    height: 15px;
-}
+            width: 15px;
+            height: 15px;
+        }
     </style>
 </head>
 
@@ -1036,18 +1036,24 @@
                 $(".mobile-design .intro .intro-content .intro-btn").addClass("animated");
             }, 4000)
 
-            // otp animated
-
-            $(".otp-btn").click(function () {
-                $(".forms-box .child .login-window .login-box").addClass("otp-animated")
-            })
-
             // out
 
             $(".intro-btn").click(function () {
                 $(".mobile-design .intro .intro-content").addClass("animated-out")
                 $(".forms-box").addClass("animated")
             })
+
+            // otp animated
+
+            $(".otp-btn").click(function () {
+                $(".forms-box .child .login-window .login-box").addClass("otp-animated")
+            })
+            
+            $(".back-link").click(function () {
+                $(".forms-box .child .login-window .login-box").removeClass("otp-animated")
+            })
+
+
 
             // phone field
 
