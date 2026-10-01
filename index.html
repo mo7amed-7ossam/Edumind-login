@@ -274,9 +274,15 @@
         .forms-box .child .login-window .login-box {
             display: flex;
             flex-direction: row-reverse;
-            width: 200%;
+            width: 300%;
             transition: .3s;
-            transform: translateX(50%);
+            transform: translateX(66.666%);
+        }
+
+        /* حالات التحريك */
+        .forms-box .child .login-window .login-box.signup-animated {
+            transform: translateX(33.333%);
+            transition-delay: .1s;
         }
 
         .forms-box .child .login-window .login-box.otp-animated {
@@ -284,18 +290,19 @@
             transition-delay: .3s;
         }
 
-        .forms-box .child .login-window .login-box.otp-animated .login-form {
+        .forms-box .child .login-window .login-box.otp-animated .login-form,
+        .forms-box .child .login-window .login-box.otp-animated .signup-form {
             opacity: 0;
             transform: scale(.8);
         }
 
         .forms-box .child .login-box>div {
-            width: 50%;
+            width: 33.333%;
             direction: rtl;
-
         }
 
-        .forms-box .child .login-form {
+        .forms-box .child .login-form,
+        .forms-box .child .signup-form {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -326,6 +333,74 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
+        }
+
+        /* Name field */
+        .name-field-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .input-box-name {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: rgba(250, 248, 245, 0.9);
+            border-radius: 16px;
+            padding: 14px 14px;
+            border: 1px solid #ECE5D8;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.015);
+            transition: all 300ms cubic-bezier(0, 0, 0.2, 1);
+            box-sizing: border-box;
+        }
+
+        .input-box-name:hover {
+            background-color: #F5F1E8;
+            border-color: #DECDBA;
+        }
+
+        .input-box-name:focus-within {
+            background-color: #ffffff;
+            border-color: #eea629;
+            box-shadow:
+                0 0 0 4px rgba(238, 166, 41, 0.12),
+                0 4px 18px rgba(238, 166, 41, 0.12);
+        }
+
+        .input-name {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0 10px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #181424;
+            text-align: right;
+        }
+
+        .input-name::placeholder {
+            color: #ADA598;
+        }
+
+        .input-name::selection {
+            background-color: rgba(238, 166, 41, 0.25);
+        }
+
+        .user-icon {
+            width: 15px;
+            height: 15px;
+            color: #A39B8E;
+            flex-shrink: 0;
+            margin-right: 4px;
+            margin-left: 4px;
+            transition: all 300ms ease;
+        }
+
+        .input-box-name:focus-within .user-icon {
+            color: #eea629;
+            transform: scale(1.05);
         }
 
         /* الحاوية الأساسية */
@@ -697,7 +772,8 @@
             /* text-[#7A7468] */
         }
 
-        .btn-signup {
+        .btn-signup,
+        .btn-login {
             background: none;
             border: none;
             padding: 0;
@@ -714,7 +790,8 @@
             transition: color 0.15s ease;
         }
 
-        .btn-signup:hover {
+        .btn-signup:hover,
+        .btn-login:hover {
             color: #0e0d17;
             text-decoration: underline;
         }
@@ -749,8 +826,9 @@
             text-align: center;
             font-weight: bold;
             color: #171424;
-            font-size: 15px;
+            font-size: 17px;
             font-family: inherit;
+            line-height: 16px;
         }
 
         .otp-timer {
@@ -831,6 +909,7 @@
                 <div class="child">
                     <div class="login-window">
                         <div class="login-box">
+                            <!-- 1. Login Form -->
                             <div class="login-form">
                                 <div class="head-title">
                                     <p class="title">
@@ -962,6 +1041,154 @@
                                     </div>
                                 </form>
                             </div>
+
+                            <!-- 2. Signup Form -->
+                            <div class="signup-form">
+                                <div class="head-title">
+                                    <p class="title">
+                                        إنشاء حساب جديد
+                                    </p>
+                                    <p class="sub-title">
+                                        سجّل بياناتك وابدأ رحلتك معنا اليوم
+                                    </p>
+                                </div>
+                                <form>
+                                    <!-- حقل الاسم الكامل -->
+                                    <div class="name-field-wrapper">
+                                        <div class="input-box-name">
+                                            <input type="text" class="input-name" placeholder="الاسم الكامل" required
+                                                value="" />
+                                            <svg class="user-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <div class="phone-field-wrapper">
+                                        <!-- حقل الإدخال الرئيسي -->
+                                        <div class="input-box group">
+                                            <button type="button" class="btn-code btn-code-signup" dir="ltr"
+                                                title="انقر لتغيير كود الدولة">
+                                                +20
+                                            </button>
+
+                                            <input type="tel" class="input-phone" placeholder="010 1234 5678" dir="ltr"
+                                                required value="" />
+
+                                            <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path
+                                                    d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384">
+                                                </path>
+                                            </svg>
+                                        </div>
+
+                                        <!-- القائمة المنسدلة لاختيار الدولة (نفس القائمة المشتركة) -->
+                                        <div class="country-menu country-menu-signup">
+                                            <button type="button" class="country-option selected" data-code="+20">
+                                                <div class="country-label">
+                                                    <span class="flag">🇪🇬</span>
+                                                    <span>مصر</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+20</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+966">
+                                                <div class="country-label">
+                                                    <span class="flag">🇸🇦</span>
+                                                    <span>السعودية</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+966</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+971">
+                                                <div class="country-label">
+                                                    <span class="flag">🇦🇪</span>
+                                                    <span>الإمارات</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+971</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+965">
+                                                <div class="country-label">
+                                                    <span class="flag">🇰🇼</span>
+                                                    <span>الكويت</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+965</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+974">
+                                                <div class="country-label">
+                                                    <span class="flag">🇶🇦</span>
+                                                    <span>قطر</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+974</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+962">
+                                                <div class="country-label">
+                                                    <span class="flag">🇯🇴</span>
+                                                    <span>الأردن</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+962</span>
+                                            </button>
+
+                                            <button type="button" class="country-option" data-code="+1">
+                                                <div class="country-label">
+                                                    <span class="flag">🇺🇸</span>
+                                                    <span>أمريكا</span>
+                                                </div>
+                                                <span class="code" dir="ltr">+1</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="options-row" dir="rtl">
+                                        <!-- خيار الموافقة على الشروط -->
+                                        <label class="checkbox-label">
+                                            <button type="button" role="checkbox" aria-checked="true"
+                                                class="custom-checkbox checked" id="terms-checkbox">
+                                                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                                    aria-hidden="true">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </button>
+                                            <span class="label-text">أوافق على الشروط والأحكام</span>
+                                        </label>
+                                    </div>
+
+                                    <button type="button" class="submit-btn otp-btn" dir="rtl">
+                                        <span class="btn-text">إرسال رمز التحقق</span>
+                                        <div class="icon-circle">
+                                            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="m12 19-7-7 7-7"></path>
+                                                <path d="M19 12H5"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+
+                                    <div class="divider-wrapper">
+                                        <div class="divider-line divider-right"></div>
+                                        <span class="divider-text">أو</span>
+                                        <div class="divider-line divider-left"></div>
+                                    </div>
+
+                                    <div class="signup-prompt">
+                                        <span>لديك حساب بالفعل؟ </span>
+                                        <button type="button" class="btn-login">تسجيل الدخول</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- 3. OTP Form -->
                             <div class="otp-form">
                                 <div class="head-title">
                                     <p class="title">
@@ -1042,53 +1269,101 @@
                 $(".forms-box").addClass("animated")
             })
 
-            // otp animated
+            // انتقال إلى إنشاء حساب
+            $(".btn-signup").click(function () {
+                $(".forms-box .child .login-window .login-box")
+                    .removeClass("otp-animated")
+                    .addClass("signup-animated");
+            })
 
+            // العودة إلى تسجيل الدخول
+            $(".btn-login").click(function () {
+                $(".forms-box .child .login-window .login-box")
+                    .removeClass("signup-animated otp-animated");
+            })
+
+            // otp animated (من أي فورم)
             $(".otp-btn").click(function () {
-                $(".forms-box .child .login-window .login-box").addClass("otp-animated")
+                $(".forms-box .child .login-window .login-box")
+                    .removeClass("signup-animated")
+                    .addClass("otp-animated");
             })
 
+            // العودة من OTP
             $(".back-link").click(function () {
-                $(".forms-box .child .login-window .login-box").removeClass("otp-animated")
+                // لو كان جاي من signup يرجع له، لو من login يرجع للوجين
+                if ($(".forms-box .child .login-window .login-box").hasClass("signup-animated") === false) {
+                    // كان في signup قبل OTP؟ نتحقق من الحالة السابقة
+                    // ببساطة نرجع للوجين (يمكن تحسينه لاحقاً)
+                    $(".forms-box .child .login-window .login-box")
+                        .removeClass("otp-animated signup-animated");
+                } else {
+                    $(".forms-box .child .login-window .login-box")
+                        .removeClass("otp-animated")
+                        .addClass("signup-animated");
+                }
             })
 
+            // remember checkbox
+            $("#remember-checkbox").click(function () {
+                $(this).toggleClass("checked");
+                $(this).attr("aria-checked", $(this).hasClass("checked"));
+            });
 
+            // terms checkbox
+            $("#terms-checkbox").click(function () {
+                $(this).toggleClass("checked");
+                $(this).attr("aria-checked", $(this).hasClass("checked"));
+            });
 
-            // phone field
-
+            // phone field - Login
             const $menu = $('#country-menu');
             const $btnCode = $('#btn-country-code');
-            const $wrapper = $('.phone-field-wrapper');
+            const $wrapper = $('.phone-field-wrapper').first();
 
-            // فتح وإغلاق القائمة المنسدلة
             $btnCode.on('click', function (e) {
                 e.stopPropagation();
                 $menu.stop(true, true).fadeToggle(150);
+                $('.country-menu-signup').fadeOut(150);
             });
 
-            // تحديد الدولة وتحديث الكود
             $menu.on('click', '.country-option', function () {
                 const code = $(this).data('code');
-
                 $btnCode.text(code);
-
-                $('.country-option').removeClass('selected');
+                $menu.find('.country-option').removeClass('selected');
                 $(this).addClass('selected');
-
                 $menu.fadeOut(150);
-                $('.input-phone').focus();
+                $btnCode.closest('.input-box').find('.input-phone').focus();
+            });
+
+            // phone field - Signup
+            const $menuSignup = $('.country-menu-signup');
+            const $btnCodeSignup = $('.btn-code-signup');
+
+            $btnCodeSignup.on('click', function (e) {
+                e.stopPropagation();
+                $menuSignup.stop(true, true).fadeToggle(150);
+                $menu.fadeOut(150);
+            });
+
+            $menuSignup.on('click', '.country-option', function () {
+                const code = $(this).data('code');
+                $btnCodeSignup.text(code);
+                $menuSignup.find('.country-option').removeClass('selected');
+                $(this).addClass('selected');
+                $menuSignup.fadeOut(150);
+                $btnCodeSignup.closest('.input-box').find('.input-phone').focus();
             });
 
             // إغلاق عند النقر في أي مساحة خارجية
             $(document).on('click', function (e) {
-                if (!$(e.target).closest($wrapper).length) {
+                if (!$(e.target).closest('.phone-field-wrapper').length) {
                     $menu.fadeOut(150);
+                    $menuSignup.fadeOut(150);
                 }
             });
 
         })
-
-
     </script>
 </body>
 
